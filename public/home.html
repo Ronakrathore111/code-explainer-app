@@ -1,0 +1,35 @@
+<!-- public/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Code Explainer</title>
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <div class="container">
+    <h1>AI Code Explainer</h1>
+    <textarea id="codeInput" placeholder="Paste your Python or JavaScript code here..."></textarea>
+    <button onclick="explainCode()">Explain Code</button>
+    <div id="output" class="output-box"></div>
+  </div>
+
+  <script>
+    async function explainCode() {
+      const code = document.getElementById("codeInput").value.trim();
+      if (!code) return alert("Please enter some code first.");
+
+      document.getElementById("output").innerText = "Analyzing...";
+
+      const res = await fetch("/explain", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code })
+      });
+
+      const data = await res.json();
+      document.getElementById("output").innerText = data.explanation;
+    }
+  </script>
+</body>
+</html>
