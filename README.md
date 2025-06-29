@@ -3,12 +3,12 @@ This is a full-stack web application that allows users to **sign up**, **log in*
 🔗 **Live Project**: [https://code-explainer-app.onrender.com](https://code-explainer-app.onrender.com)
 ## 🚀 How to Run the Project Locally
 ### 1. Clone the Repository
-```bash
 git clone https://github.com/Ronakrathore111/code-explainer-app.git
 cd code-explainer-app
 2. Install Dependencies
 npm install
-Create a .env File
+(make sure there is a users.json file)
+3.Create a .env File(in root folder)
 IBM_API_KEY=your_ibm_api_key
 IBM_PROJECT_ID=your_project_id
 4. Start the Server
