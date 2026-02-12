@@ -186,14 +186,15 @@ await sendResetEmail(user.email, resetToken, host, protocol);
 
 async function sendResetEmail(email, token, host, protocol) {
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: false, // Must be false for port 587
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS
         }
     });
 
-    // Automatically adapts to localhost or your live domain
     const resetUrl = `${protocol}://${host}/reset-password/${token}`;
 
     const mailOptions = {
@@ -201,13 +202,19 @@ async function sendResetEmail(email, token, host, protocol) {
         to: email,
         subject: 'Password Reset Request',
         html: `
-            <h3>Reset your password</h3>
-            <p>Click the link below to set a new password:</p>
-            <a href="${resetUrl}">${resetUrl}</a>
+            <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+                <h3 style="color: #3a7bd5;">Reset your password</h3>
+                <p>You requested a password reset for your Code Explainer AI account.</p>
+                <p>Click the button below to set a new password. This link is valid for 1 hour.</p>
+                <a href="${resetUrl}" style="display: inline-block; padding: 10px 20px; background-color: #00d2ff; color: white; text-decoration: none; border-radius: 5px;">Reset Password</a>
+                <p style="margin-top: 20px; font-size: 0.8rem; color: #777;">If the button doesn't work, copy and paste this link: <br> ${resetUrl}</p>
+            </div>
         `
     };
 
-    await transporter.sendMail(mailOptions);
+    // Use a variable to capture the result for logging
+    const info = await transporter.sendMail(mailOptions);
+    console.log("✅ Email sent successfully: " + info.response); 
 }
 app.post('/reset-password/:token', async (req, res) => {
     const { token } = req.params;
