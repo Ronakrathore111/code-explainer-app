@@ -1,35 +1,178 @@
-<!-- public/home.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Code Explainer</title>
-  <link rel="stylesheet" href="home.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Explainer - AI-Powered Code Analysis with IBM Watsonx</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="home.css">
+    
+    <!-- Monaco Editor -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/loader.min.js"></script>
+    
+    <!-- Marked for Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>AI Code Explainer</h1>
-    <textarea id="codeInput" placeholder="Paste your Python or JavaScript code here..."></textarea>
-    <button onclick="explainCode()">Explain Code</button>
-    <div id="output" class="output-box"></div>
-  </div>
+    <div class="app-layout">
+        <!-- Sidebar: Enhanced Glassmorphism Design -->
+        <aside class="sidebar">
+            <div class="sidebar-glow"></div>
+            <div class="sidebar-header">
+                <h3>
+                    <i class="fas fa-history"></i>
+                    Past Explanations
+                </h3>
+                <p class="history-stats" id="historyStats">Your analysis history</p>
+            </div>
+            
+            <div id="historyList" class="history-list">
+                <!-- History items will be dynamically populated -->
+                <div class="loading-pulse" style="justify-content: center; padding: 40px;">
+                    <i class="fas fa-spinner fa-spin"></i> Loading history...
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <button onclick="clearAllHistory()" class="clear-btn">
+                    <i class="fas fa-trash-alt"></i>
+                    Clear All History
+                </button>
+                <button onclick="logout()" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </aside>
 
-  <script>
-    async function explainCode() {
-      const code = document.getElementById("codeInput").value.trim();
-      if (!code) return alert("Please enter some code first.");
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header Section -->
+            <header class="main-header">
+                <div class="header-info">
+                    <div class="header-title">
+                        <h1>
+                            <i class="fas fa-code"></i>
+                            AI Code Explainer
+                        </h1>
+                        <span class="powered-by">Powered by IBM Watsonx</span>
+                    </div>
+                    <div id="userDisplay" class="user-tag">
+                        <!-- User info will be populated by JS -->
+                    </div>
+                </div>
+            </header>
 
-      document.getElementById("output").innerText = "Analyzing...";
+            <!-- Style Selector - Enhanced -->
+            <div class="style-selector">
+                <div class="selector-label">
+                    <i class="fas fa-magic"></i>
+                    <label for="explanationStyle">Explanation Mode:</label>
+                </div>
+                <div class="select-wrapper">
+                    <select id="explanationStyle" class="glass-select">
+                        <option value="beginner">🌱 Level 1: Beginner (Simple Analogies)</option>
+                        <option value="technical" selected>⚙️ Level 2: Technical (Performance & Logic)</option>
+                        <option value="senior">🏆 Level 3: Senior Dev (Refactoring & Best Practices)</option>
+                    </select>
+                    <i class="fas fa-chevron-down select-arrow"></i>
+                </div>
+                <div class="style-hint">
+                    <i class="fas fa-info-circle"></i>
+                    <span id="styleHint">Technical analysis with performance insights</span>
+                </div>
+            </div>
+            
+            <!-- Editor Section -->
+            <div class="editor-section">
+                <div class="editor-header">
+                    <div class="editor-tabs">
+                        <span class="tab active">
+                            <i class="fas fa-file-code"></i>
+                            Code Input
+                        </span>
+                    </div>
+                    <div class="editor-actions">
+                        <button id="formatBtn" class="editor-action-btn" title="Format Code (Prettier)">
+                            <i class="fas fa-indent"></i>
+                        </button>
+                        <button id="clearEditorBtn" class="editor-action-btn" title="Clear Editor">
+                            <i class="fas fa-eraser"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="editorContainer"></div>
+                <button id="explainBtn" class="primary-btn">
+                    <i class="fas fa-brain"></i>
+                    <span>Analyze with IBM Watsonx</span>
+                    <span class="shortcut-hint">Ctrl+↵</span>
+                </button>
+            </div>
+            
+            <!-- Output Section -->
+            <div class="output-section">
+                <div class="output-header">
+                    <span>
+                        <i class="fas fa-robot"></i>
+                        AI Explanation
+                    </span>
+                    <div class="header-actions">
+                        <button id="copyBtn" class="icon-btn" title="Copy to Clipboard (Ctrl+Shift+C)">
+                            <i class="fas fa-copy"></i>
+                            <span class="btn-text">Copy</span>
+                        </button>
+                        <button id="downloadBtn" class="icon-btn" title="Download as Text File">
+                            <i class="fas fa-download"></i>
+                            <span class="btn-text">Download</span>
+                        </button>
+                        <button id="shareBtn" class="icon-btn" title="Share Explanation">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="output" class="output-box">
+                    <div class="placeholder">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>Your explanation will appear here... Paste your code and click Analyze</span>
+                    </div>
+                </div>
+                <div class="output-footer">
+                    <span class="word-count" id="wordCount">0 words</span>
+                    <span class="char-count" id="charCount">0 characters</span>
+                </div>
+            </div>
+            
+            <!-- Quick Tips Section -->
+            <div class="tips-section">
+                <div class="tip-card">
+                    <i class="fas fa-keyboard"></i>
+                    <div class="tip-content">
+                        <strong>Pro Tip:</strong> Press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to analyze code quickly
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-language"></i>
+                    <div class="tip-content">
+                        <strong>Auto-detection:</strong> Editor automatically detects programming language
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-history"></i>
+                    <div class="tip-content">
+                        <strong>History:</strong> Click on past explanations to restore code and analysis
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 
-      const res = await fetch("/explain", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code })
-      });
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
 
-      const data = await res.json();
-      document.getElementById("output").innerText = data.explanation;
-    }
-  </script>
+    <!-- Main JavaScript -->
+    <script src="home.js"></script>
 </body>
 </html>

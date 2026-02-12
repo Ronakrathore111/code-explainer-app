@@ -1,61 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animated Login & Registration Form</title>
-  <link rel="stylesheet" type="text/css" href="style.css"> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Explainer - AI-Powered Code Analysis Platform</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="background">
-  <div class="wrapper">
-    <div class="form-wrapper sign-in">
-      <form action="">
-        <h2>Login</h2>
-        <div class="input-group">
-          <input type="text" required>
-          <label for="">Username</label>
+        <div class="wrapper">
+            <div class="form-wrapper sign-in">
+                <form id="loginForm">
+                    <h2>Welcome Back</h2>
+                    <div class="input-group">
+                        <input type="email" id="loginEmail" required>
+                        <label>Email Address</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="loginPassword" required>
+                        <label>Password</label>
+                    </div>
+                    
+                    <div class="remember">
+                        <label>
+                            <input type="checkbox" id="rememberMe"> Remember me
+                        </label>
+                        <a href="#" id="forgotPasswordLink" style="color: var(--primary); text-decoration: none; font-size: 14px;">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </button>
+
+                    <div class="signUp-link">
+                        <p>Don't have an account? <a href="#" class="signUpBtn-link">Sign Up</a></p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="form-wrapper sign-up">
+                <form id="signupForm">
+                    <h2>Create Account</h2>
+                    <div class="input-group">
+                        <input type="text" id="signupUsername" autocomplete="username" required>
+                        <label>Username</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="signupEmail" autocomplete="email" required>
+                        <label>Email Address</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="signupPassword" autocomplete="new-password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="remember">
+                        <label>
+                            <input type="checkbox" id="termsCheckbox"> I agree to the terms & conditions
+                        </label>
+                    </div>
+                    <button type="submit">
+                        <i class="fas fa-user-plus"></i>
+                        Sign Up
+                    </button>
+                    <div class="signUp-link">
+                        <p>Already have an account? <a href="#" class="signInBtn-link">Sign In</a></p>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="input-group">
-          <input type="password" required>
-          <label for="">Password</label>
-        </div>
-        <div class="remember">
-          <label><input type="checkbox"> Remember me</label>
-        </div>
-        <button type="submit">Login</button>
-        <div class="signUp-link">
-          <p>Don't have an account? <a href="#" class="signUpBtn-link">Sign Up</a></p>
-        </div>
-      </form>
     </div>
-    <div class="form-wrapper sign-up">
-      <form action="">
-        <h2>Sign Up</h2>
-        <div class="input-group">
-          <input type="text" required>
-          <label for="">Username</label>
+
+    <div id="forgotModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Reset Password</h3>
+            <p>Enter your email to receive a reset link.</p>
+            <div class="input-group" style="margin: 20px 0;">
+                <input type="email" id="resetEmail" required>
+                <label>Email Address</label>
+            </div>
+            <button id="sendResetBtn" class="primary-btn">Send Reset Link</button>
         </div>
-        <div class="input-group">
-          <input type="email" required>
-          <label for="">Email</label>
-        </div>
-        <div class="input-group">
-          <input type="password" required>
-          <label for="">Password</label>
-        </div>
-        <div class="remember">
-          <label><input type="checkbox"> I agree to the terms & conditions</label>
-        </div>
-        <button type="submit">Sign Up</button>
-        <div class="signUp-link">
-          <p>Already have an account? <a href="#" class="signInBtn-link">Sign In</a></p>
-        </div>
-      </form>
     </div>
-  </div>
-  </div>
-  <script src="script.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
