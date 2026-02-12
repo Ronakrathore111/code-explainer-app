@@ -836,3 +836,114 @@ body {
     width: 100%;
   }
 }
+/* --- Optimized Responsive Design --- */
+
+/* Tablet & Smaller Laptops */
+@media (max-width: 1024px) {
+    .app-layout {
+        flex-direction: column;
+        height: auto; /* Allow height to expand */
+        min-height: 100vh;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        border-right: none;
+        border-bottom: 1px solid var(--glass-border);
+    }
+    
+    .btn-text {
+        display: none; /* Hide text on smaller buttons to save space */
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        overflow-y: auto; /* Enable vertical scrolling for the whole page */
+    }
+
+    .app-layout {
+        display: block; /* Stack elements naturally */
+        height: auto;
+        overflow: visible;
+    }
+
+    .main-content {
+        padding: 20px 15px;
+        height: auto;
+        overflow: visible;
+        width: 100%;
+    }
+
+    /* Sidebar Header & Stats */
+    .sidebar-header h3 {
+        font-size: 1.1rem;
+    }
+
+    /* History List: Convert to Horizontal Scroll or Compact List */
+    .history-list {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        margin: 15px 0;
+        padding-bottom: 10px;
+        gap: 12px;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .history-item {
+        min-width: 250px;
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    /* Adjust Header for Mobile */
+    .header-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .header-title h1 {
+        font-size: 1.5rem;
+    }
+
+    /* Selector and Tips */
+    .style-selector {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .tips-section {
+        flex-direction: column;
+    }
+
+    /* Editor height adjustment */
+    #editorContainer {
+        height: 350px !important;
+        border-radius: 12px;
+    }
+
+    /* Output Section scrolling */
+    .output-box {
+        max-height: none; /* Allow output to expand with content */
+        overflow: visible;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .icon-btn {
+        flex: 1;
+        justify-content: center;
+    }
+}
