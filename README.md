@@ -40,16 +40,12 @@ This project is intended for learning and academic purposes.
 
 Ronak Rathore
 GitHub → https://github.com/Ronakrathore111
+<img width="1917" height="1078" alt="Screenshot 2026-05-16 200634" src="https://github.com/user-attachments/assets/a709f51a-feed-443d-af27-f846514d1541" />
+<img width="1918" height="1078" alt="Screenshot 2026-05-16 201248" src="https://github.com/user-attachments/assets/a849abf2-887d-4ec0-803e-2e70e13f05bb" />
+<img width="1917" height="1078" alt="Screenshot 2026-05-16 200701" src="https://github.com/user-attachments/assets/36d2481e-caf1-4e4b-8f13-379b98d39b21" />
+<img width="1918" height="1073" alt="Screenshot 2026-05-16 200712" src="https://github.com/user-attachments/assets/b3645578-341b-470f-b88b-e2612ecdb553" />
+<img width="1912" height="1078" alt="Screenshot 2026-05-16 200757" src="https://github.com/user-attachments/assets/424e48c5-8350-451c-83ca-53183b979155" />
 
-![Image](https://github.com/user-attachments/assets/76db7845-9bcb-4ecd-89d8-2a8c110de529)
-
-![Image](https://github.com/user-attachments/assets/afc79ffd-5247-4f1f-bf4a-a44525d2afef)
-
-![Image](https://github.com/user-attachments/assets/501c27a7-c954-48fd-a142-89705ac4aa39)
-
-![Image](https://github.com/user-attachments/assets/33b70cdc-e396-42b5-9b21-5f6e6bdbf72c)
-
-![Image](https://github.com/user-attachments/assets/6442ae2a-b242-4ad4-bfb6-d614ad3ad448)
 
 
 
